@@ -1,0 +1,22 @@
+.App {
+  background: #006400;
+}
+
+.App-header {
+  background-color: #006400;
+  padding: 20px 10px;
+  color: white;
+  text-align: center;
+}
+
+.App-footer {
+  background-color: #006400;
+  padding: 20px 0px;
+  color: white;
+  text-align: right;
+  font-style: italic;
+}
+
+.App-footer a {
+  color: #73BA9B !important;
+}

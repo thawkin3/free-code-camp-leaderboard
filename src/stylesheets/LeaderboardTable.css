@@ -1,0 +1,20 @@
+.LeaderboardTable.table {
+	background: #fff;
+	border-radius: 8px;
+	vertical-align: middle;
+	/*width: 90%;*/
+}
+.LeaderboardTable.table th, .LeaderboardTable.table td {
+	padding: 12px;
+	vertical-align: middle
+}
+
+.showOption.selected, .showOption:hover {
+	color: #73BA9B;
+}
+
+/*@media (max-width: 480px) {
+	.LeaderboardTable.table {
+		max-width: 92%;
+	}
+}*/
