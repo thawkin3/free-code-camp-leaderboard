@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FreeCodeCamp Leaderboard",
+  "name": "FreeCodeCamp Leaderboard",
   "icons": [
     {
       "src": "favicon.ico",

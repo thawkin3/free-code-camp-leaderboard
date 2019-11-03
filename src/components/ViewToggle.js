@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './../stylesheets/ViewToggle.css';
 
-class ViewToggle extends Component {
-  render() {
-    return (
-        <div className="ViewToggle">
-            <span>Currently Showing: </span>
-            <span className={"recent showOption " + (this.props.showing === "recent" ? "selected" : "")} onClick={() => this.props.changeShowing("recent")}>Last 30 Days</span>
-            <span> | </span>
-            <span className={"allTime showOption " + (this.props.showing === "allTime" ? "selected" : "")} onClick={() => this.props.changeShowing("allTime")}>All Time</span>
-        </div>
-    );
-  }
-}
+const ViewToggle = (props) => (
+  <div className="ViewToggle">
+    <span>Currently Showing: </span>
+    <span className={'recent showOption ' + (props.period === 'MONTHLY' ? 'selected' : '')} onClick={() => props.changePeriod('MONTHLY')}>Last 30 Days</span>
+    <span> | </span>
+    <span className={'allTime showOption ' + (props.period === 'ALL' ? 'selected' : '')} onClick={() => props.changePeriod('ALL')}>All Time</span>
+  </div>
+)
 
 export default ViewToggle;

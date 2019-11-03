@@ -6,11 +6,11 @@ const LeaderboardRow = (props) => {
     <tr>
       <td className="positionNumber">{props.index}</td>
       <td className="user">
-        <img className="avatar" src={props.img} alt={props.img} title={props.img} />
-        <a href={`https://www.freecodecamp.com/${props.username}`}>{props.username}</a>
+        <p>{props.user.name} (<a href={`https://www.freecodecamp.com/${props.user.username}`}>{props.user.username}</a>)</p>
       </td>
-      <td className="pointsLast30Days">{props.recent}</td>
-      <td className="pointsAllTime">{props.alltime}</td>
+      <td className="likesReceived">{props.likes_received}</td>
+      <td className="likesGiven">{props.likes_given}</td>
+      <td className="postCount">{props.post_count}</td>
     </tr>
   );
 }

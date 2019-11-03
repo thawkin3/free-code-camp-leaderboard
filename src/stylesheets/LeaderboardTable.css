@@ -2,8 +2,8 @@
 	background: #fff;
 	border-radius: 8px;
 	vertical-align: middle;
-	/*width: 90%;*/
 }
+
 .LeaderboardTable.table th, .LeaderboardTable.table td {
 	padding: 12px;
 	vertical-align: middle
@@ -13,8 +13,12 @@
 	color: #73BA9B;
 }
 
-/*@media (max-width: 480px) {
-	.LeaderboardTable.table {
-		max-width: 92%;
+@media (max-width: 480px) {
+	.LeaderboardTable.table th, .LeaderboardTable.table td {
+		padding: 8px;
 	}
-}*/
+
+	.postCount {
+		display: none;
+	}
+}
