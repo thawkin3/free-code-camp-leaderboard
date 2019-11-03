@@ -1,13 +1,13 @@
 .ViewToggle {
-	text-align: right;
-	color: #fff;
-	margin-bottom: 20px;
+  text-align: right;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .showOption {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .showOption.selected, .showOption:hover {
-	color: #73BA9B;
+  color: #73BA9B;
 }

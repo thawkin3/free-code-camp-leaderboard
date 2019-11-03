@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Loading from './components/Loading';
+import ErrorNotice from './components/ErrorNotice';
 import ViewToggle from './components/ViewToggle';
 import LeaderboardTable from './components/LeaderboardTable';
 import './stylesheets/App.css';
@@ -10,39 +11,44 @@ class App extends Component {
     super(props);
 
     this.state = {
-      topUsersAllTime: [],
-      topUsersLast30Days: [],
-      showing: "recent"
-    }
+      leaderboardData: [],
+      period: 'ALL',
+      fetchStatus: 'UNSENT'
+    };
 
-    this.changeShowing = this.changeShowing.bind(this);
-
+    this.getLeadersForAllTime = this.getLeadersForAllTime.bind(this);
+    this.getLeadersForLast30Days = this.getLeadersForLast30Days.bind(this);
+    this.changePeriod = this.changePeriod.bind(this);
   }
 
   componentDidMount() {
-    axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
-      .then(res => {
-        this.setState({ topUsersLast30Days: res.data });
-      })
-      .catch(error => {
-        this.setState({ topUsersLast30Days: [] });
-        console.log(error);
-      });
+    this.getLeadersForAllTime();
+  }
 
-    axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
+  getLeadersForAllTime() {
+    this.setState({ fetchStatus: 'LOADING' });
+    axios.get('https://cors-anywhere.herokuapp.com/http://www.freecodecamp.org/forum/directory_items.json?period=all&order=likes_received')
       .then(res => {
-        this.setState({ topUsersAllTime: res.data });
+        this.setState({ leaderboardData: res.data.directory_items, period: 'ALL', fetchStatus: 'DONE' });
       })
       .catch(error => {
-        this.setState({ topUsersAllTime: [] });
-        console.log(error);
+        this.setState({ leaderboardData: [], period: 'ALL', fetchStatus: 'ERROR' });
       });
   }
 
-  changeShowing(val) {
-    this.setState({
-      showing: val
-    });
+  getLeadersForLast30Days() {
+    this.setState({ fetchStatus: 'LOADING' });
+    axios.get('https://cors-anywhere.herokuapp.com/http://www.freecodecamp.org/forum/directory_items.json?period=monthly&order=likes_received')
+      .then(res => {
+        this.setState({ leaderboardData: res.data.directory_items, period: 'MONTHLY', fetchStatus: 'DONE' });
+      })
+      .catch(error => {
+        this.setState({ leaderboardData: [], period: 'MONTHLY', fetchStatus: 'ERROR' });
+      });
+  }
+
+  changePeriod(period) {
+    period === 'ALL' ? this.getLeadersForAllTime() : this.getLeadersForLast30Days();
   }
 
   render() {
@@ -57,17 +63,20 @@ class App extends Component {
             </div>
           </div>
         </div>
-        
+
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              { (this.state.topUsersAllTime.length > 0 && this.state.topUsersAllTime.length > 0) ? (
+              {(this.state.leaderboardData.length > 0 && this.state.fetchStatus === 'DONE') ? (
                 <div>
-                  <ViewToggle showing={this.state.showing} changeShowing={this.changeShowing} />
-                  <LeaderboardTable allTime={this.state.topUsersAllTime}
-                  recent={this.state.topUsersLast30Days} showing={this.state.showing}
-                  changeShowing={this.changeShowing} />
+                  <ViewToggle
+                    period={this.state.period}
+                    changePeriod={this.changePeriod}
+                  />
+                  <LeaderboardTable data={this.state.leaderboardData} />
                 </div>
+              ) : this.state.fetchStatus === 'ERROR' ? (
+                <ErrorNotice />
               ) : (
                 <Loading />
               )}
