@@ -1,24 +1,24 @@
 .LeaderboardTable.table {
-	background: #fff;
-	border-radius: 8px;
-	vertical-align: middle;
+  background: #fff;
+  border-radius: 8px;
+  vertical-align: middle;
 }
 
 .LeaderboardTable.table th, .LeaderboardTable.table td {
-	padding: 12px;
-	vertical-align: middle
+  padding: 12px;
+  vertical-align: middle
 }
 
 .showOption.selected, .showOption:hover {
-	color: #73BA9B;
+    color: #73BA9B;
 }
 
 @media (max-width: 480px) {
-	.LeaderboardTable.table th, .LeaderboardTable.table td {
-		padding: 8px;
-	}
+  .LeaderboardTable.table th, .LeaderboardTable.table td {
+    padding: 8px;
+  }
 
-	.postCount {
-		display: none;
-	}
+  .postCount {
+    display: none;
+  }
 }

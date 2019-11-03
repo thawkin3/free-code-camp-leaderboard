@@ -8,6 +8,6 @@ const ViewToggle = (props) => (
     <span> | </span>
     <span className={'allTime showOption ' + (props.period === 'ALL' ? 'selected' : '')} onClick={() => props.changePeriod('ALL')}>All Time</span>
   </div>
-)
+);
 
 export default ViewToggle;
